@@ -9,10 +9,15 @@ import {Link} from 'react-router';
 
 class BusLines extends Component{
 
-    renderPosts() {
-        return this.props.list.map((line) => {
+    renderLines() {
+       return this.props.miPpt.map((post) => {
             return (
-                console.log(line)
+                <li className="list-group-item" key={post.id}>
+                    
+                        <span className="pull-xs-right">{post.categories}</span>
+                        <strong>{post.title}</strong>
+                    
+                </li>
             )
         })
     }
@@ -22,21 +27,23 @@ class BusLines extends Component{
 
                 <h3>Buses</h3>
                 <ul className="list-group">
-                    {this.renderPosts()}
+                    {this.renderLines()}
                 </ul>
             </div>
         );
     };
 
     componentWillMount(){
-        this.props.fetchPost();
+
+        this.props.fecthListBuses();
+        console.log("componentWillMount",this.props);
     };
 }
 
-
 function mapStateToProps(state) {
-    return {busLines: state.posts.busLines};
+    return {miPpt: state.lines.busLines};
 
 }
+
 
 export default connect(mapStateToProps, {fecthListBuses})(BusLines);

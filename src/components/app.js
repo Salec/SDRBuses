@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-
-
 export default class App extends Component {
   render() {
     return (
-      <BusLines/>
+      <div>
+      	  	{this.props.children}
+      </div>
     );
   }
 }
