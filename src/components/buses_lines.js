@@ -1,6 +1,7 @@
 /**
  * Created by Fernando on 4/10/2017.
  */
+import _ from 'underscore';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fecthListBuses} from '../actions/index';
@@ -10,15 +11,13 @@ import {Link} from 'react-router';
 class BusLines extends Component{
 
     renderLines() {
-       return this.props.miPpt.map((post) => {
-            return (
-                <li className="list-group-item" key={post.id}>
-                    
-                        <span className="pull-xs-right">{post.categories}</span>
-                        <strong>{post.title}</strong>
-                    
-                </li>
-            )
+        console.log("render",this.props.lines);
+
+        _.map(this.props.miPpt, post => {
+          return(  <li className="list-group-item" key={post.id}>
+                <span className="pull-xs-right">{post.categories}</span>
+                <strong>{post.title}</strong>
+            </li>)
         })
     }
 
@@ -41,7 +40,7 @@ class BusLines extends Component{
 }
 
 function mapStateToProps(state) {
-    return {miPpt: state.lines.busLines};
+    return {lines: state.lines.busLines};
 
 }
 
