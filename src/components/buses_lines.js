@@ -11,17 +11,22 @@ import {Link} from 'react-router';
 class BusLines extends Component{
 
     renderLines() {
-        console.log("render",this.props.lines);
 
-        _.map(this.props.miPpt, post => {
-          return(  <li className="list-group-item" key={post.id}>
-                <span className="pull-xs-right">{post.categories}</span>
-                <strong>{post.title}</strong>
+        _.map(this.props.lines.resources, bus => {
+            console.log("log Bueno", bus);
+          return(  
+
+            <li className="list-group-item" key={bus.uri}>
+                {bus.uri}
             </li>)
         })
     }
 
     render(){
+        if(!this.props.lines){
+            return <div>Loading...</div>
+        }
+
         return (<div>
 
                 <h3>Buses</h3>
