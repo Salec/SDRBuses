@@ -15,10 +15,11 @@ class BusLines extends Component {
         return _.map(this.props.lines.resources, bus => {
             return (
                 <tr key={bus['dc:identifier']}>
-                    <Link to={"linea/" +bus['dc:identifier']}>
+
                         <td>{bus['dc:name']}</td>
-                        <td> {bus['ayto:numero']}</td>
-                    </Link>
+                        <td> {bus['ayto:numero']}
+                            <Link to={"stops/" +bus['dc:identifier']}>Click</Link></td>
+
                 </tr>)
         })
     }
@@ -50,7 +51,6 @@ class BusLines extends Component {
     componentWillMount(){
 
         this.props.fecthListBuses();
-        console.log("componentWillMount",this.props);
     };
 }
 
