@@ -16,9 +16,7 @@ export function fecthListBuses() {
 
 }
 export function fetchStopsLine(identifier) {
-    //const request = axios.get("http://datos.santander.es/api/rest/datasets/lineas_bus_secuencia.json?query=ayto\:Linea:103");
-    const request = axios.get(`${URL_API}${URL_LIST_BUSES}`);
-    //console.log("request",`${URL_API}${URL_LIST_BUSES}?query=ayto\:Linea:${identifier}`);
+    const request = axios.get(`${URL_API}${URL_STOPS_LINE}?query=ayto\\:Linea:${identifier}`);
     return{
         type: GET_STOPS_LINE,
         payload: request

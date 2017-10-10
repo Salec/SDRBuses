@@ -11,10 +11,10 @@ class StopsLine extends Component {
     };
 
     render() {
-        if (!this.props.lines) {
+        if (!this.props) {
             return <div>Loading...</div>
         }
-
+        console.log("render",this.props);
         return (
 
                <h1>OCUC</h1>
