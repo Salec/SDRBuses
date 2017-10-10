@@ -1,6 +1,7 @@
 /**
  * Created by Fernando on 10/10/2017.
  */
+import _ from  'underscore';
 import React, {Component,PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {fetchStopsLine} from '../actions/index'
@@ -14,13 +15,28 @@ class StopsLine extends Component {
         if (!this.props) {
             return <div>Loading...</div>
         }
-        console.log("render",this.props);
+        
         return (
+               <div> 
+               <h3 className="text-center text-primary">Stops from line {this.props.params.id}</h3>
+               <ul className="list-group">
+                    {this.renderStops()}
+                </ul>
+               </div>
 
-               <h1>OCUC</h1>
         );
     };
+    
+    renderStops() {
 
+        return _.map(this.props.stops.resources, stop => {
+            return (
+                <li key={stop['dc:identifier']}>
+                        <span>{stop['ayto:NombreParada']}</span>
+                        <strong> {stop['ayto:NParada']}</strong>
+                </li>);
+        })
+    }
 
     componentWillMount() {
         console.log("Paradas", this.props.params.id);

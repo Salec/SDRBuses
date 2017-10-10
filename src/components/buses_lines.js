@@ -17,7 +17,7 @@ class BusLines extends Component {
                 <tr key={bus['dc:identifier']}>
 
                         <td>{bus['dc:name']}</td>
-                        <td> {bus['ayto:numero']}
+                        <td> {bus['dc:identifier']}
                             <Link to={"stops/" +bus['dc:identifier']}>Click</Link></td>
 
                 </tr>)
