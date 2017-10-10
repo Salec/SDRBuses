@@ -8,31 +8,41 @@ import {fecthListBuses} from '../actions/index';
 import {Link} from 'react-router';
 
 
-class BusLines extends Component{
+class BusLines extends Component {
 
     renderLines() {
 
-        _.map(this.props.lines.resources, bus => {
-            console.log("log Bueno", bus);
-          return(  
-
-            <li className="list-group-item" key={bus.uri}>
-                {bus.uri}
-            </li>)
+        return _.map(this.props.lines.resources, bus => {
+            return (
+                <tr key={bus['dc:identifier']}>
+                    <Link to={"linea/" +bus['dc:identifier']}>
+                        <td>{bus['dc:name']}</td>
+                        <td> {bus['ayto:numero']}</td>
+                    </Link>
+                </tr>)
         })
     }
 
-    render(){
-        if(!this.props.lines){
+    render() {
+        if (!this.props.lines) {
             return <div>Loading...</div>
         }
 
         return (<div>
 
-                <h3>Buses</h3>
-                <ul className="list-group">
-                    {this.renderLines()}
-                </ul>
+                <h3 className="text-center text-primary">Couch Lines Index</h3>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Line</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderLines()}
+                    </tbody>
+
+                </table>
             </div>
         );
     };
