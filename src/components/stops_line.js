@@ -6,6 +6,8 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {fetchStopsLine} from '../actions/index'
 
+const CONST_DIR_UP = 1;
+
 class StopsLine extends Component {
     static contextTypes = {
         router: PropTypes.object
@@ -19,22 +21,36 @@ class StopsLine extends Component {
         return (
             <div>
                 <h3 className="text-center text-primary">Stops from line {this.props.match.params.id}</h3>
-                <ul className="list-group">
-                    {this.renderStops()}
-                </ul>
+                {this.renderStops()}
             </div>
         );
     };
 
     renderStops() {
+        let go = [];
+        let back = [];
+        _.map(this.props.stops.resources, stop => {
+            if (CONST_DIR_UP == stop['ayto:SentidoRuta']) {
+                go.push(this.getStopInfo(stop))
+            } else {
+                back.push(this.getStopInfo(stop))
+            }
+        });
+        return (
+            <div>
+                <ul className="list-group">IDA {go}   </ul>
+                <ul className="list-group">VUELTA {back}   </ul>
+            </div>
 
-        return _.map(this.props.stops.resources, stop => {
-            return (
-                <li key={stop['dc:identifier']}>
-                    <span>{stop['ayto:NombreParada']}</span>
-                    <strong> {stop['ayto:NParada']}</strong>
-                </li>);
-        })
+
+        )
+    }
+
+    getStopInfo(stop) {
+        return (  <li key={stop['dc:identifier']}>
+            <span>{stop['ayto:NombreParada']}</span>
+            <strong> {stop['ayto:NParada']}</strong>
+        </li>)
     }
 
     componentWillMount() {
