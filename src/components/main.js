@@ -2,7 +2,7 @@
  * Created by Fernando on 11/10/2017.
  */
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import buses_lines from './buses_lines'
 import stops_line from './stops_line';
 

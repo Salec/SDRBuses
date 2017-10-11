@@ -13,17 +13,20 @@ class BusLines extends Component {
 
         return _.map(this.props.lines.resources, bus => {
             return (
-                <tr key={bus['dc:identifier']} onClick={this.goto.bind(this)} data-url={"stops/"+bus['dc:identifier']}>
+                <tr key={bus['dc:identifier']} onClick={this.goto.bind(this)}
+                    data-url={"stops/" + bus['dc:identifier']}>
 
-                        <td>{bus['dc:name']}</td>
-                        <td> {bus['dc:identifier']}</td>
+                    <td>{bus['dc:name']}</td>
+                    <td> {bus['dc:identifier']}</td>
 
                 </tr>)
         })
     }
-    goto(event){
-         this.props.history.push(event.target.parentElement.dataset.url)
+
+    goto(event) {
+        this.props.history.push(event.target.parentElement.dataset.url)
     }
+
     render() {
         if (!this.props.lines) {
             return <div>Loading...</div>
@@ -34,13 +37,13 @@ class BusLines extends Component {
                 <h3 className="text-center text-primary">Couch Lines Index</h3>
                 <table className="table table-striped">
                     <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Line</th>
-                        </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Line</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {this.renderLines()}
+                    {this.renderLines()}
                     </tbody>
 
                 </table>
@@ -48,7 +51,7 @@ class BusLines extends Component {
         );
     };
 
-    componentWillMount(){
+    componentWillMount() {
 
         this.props.fecthListBuses();
     };

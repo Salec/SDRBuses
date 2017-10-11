@@ -9,7 +9,7 @@ const URL_STOPS_LINE = '/rest/datasets/lineas_bus_secuencia.json';
 
 export function fecthListBuses() {
     const request = axios.get(`${URL_API}${URL_LIST_BUSES}`);
-    return({
+    return ({
         type: LIST_BUSES,
         payload: request
     })
@@ -17,7 +17,7 @@ export function fecthListBuses() {
 }
 export function fetchStopsLine(identifier) {
     const request = axios.get(`${URL_API}${URL_STOPS_LINE}?query=ayto\\:Linea:${identifier}`);
-    return{
+    return {
         type: GET_STOPS_LINE,
         payload: request
     }
