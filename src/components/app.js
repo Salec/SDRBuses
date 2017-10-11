@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
+import Main from './main'
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-      	  	{this.props.children}
-      </div>
-    );
-  }
-}
+const App = () => (
+    <div>
+      <Main />
+    </div>
+);
+export default App

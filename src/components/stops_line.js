@@ -15,10 +15,10 @@ class StopsLine extends Component {
         if (!this.props) {
             return <div>Loading...</div>
         }
-        
+        console.log("Paradas",this.props.stops.resources);
         return (
                <div> 
-               <h3 className="text-center text-primary">Stops from line {this.props.params.id}</h3>
+               <h3 className="text-center text-primary">Stops from line {this.props.match.params.id}</h3>
                <ul className="list-group">
                     {this.renderStops()}
                 </ul>
@@ -39,8 +39,7 @@ class StopsLine extends Component {
     }
 
     componentWillMount() {
-        console.log("Paradas", this.props.params.id);
-        this.props.fetchStopsLine(this.props.params.id);
+        this.props.fetchStopsLine(this.props.match.params.id);
     }
 }
 

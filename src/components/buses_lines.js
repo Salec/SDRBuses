@@ -5,7 +5,6 @@ import _ from 'underscore';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fecthListBuses} from '../actions/index';
-import {Link} from 'react-router';
 
 
 class BusLines extends Component {
@@ -14,16 +13,17 @@ class BusLines extends Component {
 
         return _.map(this.props.lines.resources, bus => {
             return (
-                <tr key={bus['dc:identifier']}>
+                <tr key={bus['dc:identifier']} onClick={this.goto.bind(this)} data-url={"stops/"+bus['dc:identifier']}>
 
                         <td>{bus['dc:name']}</td>
-                        <td> {bus['dc:identifier']}
-                            <Link to={"stops/" +bus['dc:identifier']}>Click</Link></td>
+                        <td> {bus['dc:identifier']}</td>
 
                 </tr>)
         })
     }
-
+    goto(event){
+         this.props.history.push(event.target.parentElement.dataset.url)
+    }
     render() {
         if (!this.props.lines) {
             return <div>Loading...</div>
