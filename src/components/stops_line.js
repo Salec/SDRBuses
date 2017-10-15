@@ -4,7 +4,8 @@
 import _ from  'underscore';
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {fetchStopsLine} from '../actions/index'
+import {fetchStopsLine} from '../actions/index';
+import StopsMap from './stopsMap_list';
 
 const CONST_DIR_UP = 1;
 
@@ -38,8 +39,11 @@ class StopsLine extends Component {
         });
         return (
             <div>
-                <ul className="list-group">IDA {go}   </ul>
-                <ul className="list-group">VUELTA {back}   </ul>
+                <div>
+                    <ul id="up" className="list-group">IDA {go}   </ul>
+                    <ul id="down" className="list-group">VUELTA {back}   </ul>
+                </div>
+                <StopsMap/>
             </div>
 
 
