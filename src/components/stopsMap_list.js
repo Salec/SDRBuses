@@ -2,19 +2,28 @@
  * Created by fernando on 10/15/17.
  */
 import React, {Component} from 'react';
-import utmObj from 'utm-latlng';
+import proj4 from 'proj4';
 import _ from  'underscore';
 
-const UTMZoneNumber = 30;
-const UTMZoneLetter = 'N';
+const EPSG_4326 = 'EPSG:4326';
+const EPSG_23030 = 'EPSG:23030';
 
+proj4.defs([
+    [
+        EPSG_4326,
+        '+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees'
+    ],
+    [
+        EPSG_23030,
+        '+title=ED50 (UTM) +proj=utm +zone=30 +ellps=intl +towgs84=-87,-98,-121,0,0,0,0 +units=m +no_defs'
+    ]
+]);
 
 class StopsMap extends Component{
     componentDidMount(){
     }
     componentWillReceiveProps(newPPts){
         if(newPPts.stops && newPPts.stops.length != 0) {
-            let utm = new utmObj('ED50');
 
             let map = new google.maps.Map(this.refs.map, {
                 zoom: 12,
@@ -23,12 +32,14 @@ class StopsMap extends Component{
                     lng: -3.77
                 }
             });
-            console.log('dentr0', newPPts.stops);
+            let coord = proj4(EPSG_23030, EPSG_4326);
             _.map(newPPts.stops, stop => {
-                let debug = {PosX: stop['ayto:PosX'], PosY: stop['ayto:PosY']};
-                console.log( stop['ayto:NombreParada'],debug ,utm.convertUtmToLatLng(stop['ayto:PosX'], stop['ayto:PosY'], UTMZoneNumber, UTMZoneLetter));
+                let coordenadas =[parseInt(stop['ayto:PosX']),parseInt(stop['ayto:PosY'])];
+                console.log('coordenadas before ' +stop['ayto:NombreParada']+':',coordenadas);
+                let corr =coord.forward(coordenadas);
+                console.log("vamos", corr);
                 new google.maps.Marker({
-                    position: utm.convertUtmToLatLng(stop['ayto:PosX'], stop['ayto:PosY'], UTMZoneNumber, UTMZoneLetter),
+                    position:{lat: corr[1], lng: corr[0]} ,
                     map: map,
                     title: stop['ayto:NombreParada']
                 });
