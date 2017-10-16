@@ -43,7 +43,7 @@ class StopsLine extends Component {
                     <ul id="up" className="list-group">IDA {go}   </ul>
                     <ul id="down" className="list-group">VUELTA {back}   </ul>
                 </div>
-                <StopsMap/>
+                <StopsMap stops={go}/>
             </div>
 
 
