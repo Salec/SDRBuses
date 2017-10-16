@@ -18,7 +18,6 @@ class StopsLine extends Component {
         if (!this.props) {
             return <div>Loading...</div>
         }
-        console.log("Paradas", this.props.stops.resources);
         return (
             <div>
                 <h3 className="text-center text-primary">Stops from line {this.props.match.params.id}</h3>
@@ -28,22 +27,24 @@ class StopsLine extends Component {
     };
 
     renderStops() {
-        let go = [];
-        let back = [];
+        let goInfo =[];
+        let goRep = [];
+        let backRep = [];
         _.map(this.props.stops.resources, stop => {
             if (CONST_DIR_UP == stop['ayto:SentidoRuta']) {
-                go.push(this.getStopInfo(stop))
+                goRep.push(this.getStopInfo(stop));
+                goInfo.push(stop);
             } else {
-                back.push(this.getStopInfo(stop))
+                backRep.push(this.getStopInfo(stop))
             }
         });
         return (
             <div>
                 <div>
-                    <ul id="up" className="list-group">IDA {go}   </ul>
-                    <ul id="down" className="list-group">VUELTA {back}   </ul>
+                    <ul id="up" className="list-group">IDA {goRep}   </ul>
+                    <ul id="down" className="list-group">VUELTA {backRep}   </ul>
                 </div>
-                <StopsMap stops={go}/>
+                <StopsMap stops={goInfo}/>
             </div>
 
 
