@@ -6,7 +6,7 @@ import utmObj from 'utm-latlng';
 import _ from  'underscore';
 
 const UTMZoneNumber = 30;
-const UTMZoneLetter = 'T';
+const UTMZoneLetter = 'N';
 
 
 class StopsMap extends Component{
