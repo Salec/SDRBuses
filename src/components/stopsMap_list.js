@@ -56,12 +56,14 @@ class StopsMap extends Component {
                     map: this.map,
                     scrollwheel: true,
                     title: stop['ayto:NombreParada'],
+                    stop: stop["ayto:NParada"],
                     clickable: true
                 });
-                marker.addListener('click', function() {
+                marker.addListener('click', function(e) {
                     that.infowindow.open(marker.get('map'), marker);
+                    that.setState({NParada: this.stop});
                 });
-                this.infowindow.setContent('asdfds');
+
             });
             let lineSymbol = {
                 path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
