@@ -22,15 +22,27 @@ proj4.defs([
 
 class StopsMap extends Component {
 
+
+    constructor(props){
+        super(props);
+        this.state ={NParada : null}
+    }
+    shouldComponentUpdate(){
+        return false;
+    }
+    componentDidMount(){
+        this.map = new google.maps.Map(this.refs.map, {
+            zoom: 13,
+            center: {
+                lat: 43.4614,
+                lng: -3.8163
+            }
+        });
+        this.infowindow = new google.maps.InfoWindow();
+    }
     componentWillReceiveProps(newPPts) {
         if (newPPts.stops && newPPts.stops.length != 0) {
-            let map = new google.maps.Map(this.refs.map, {
-                zoom: 12,
-                center: {
-                    lat: 43.46,
-                    lng: -3.77
-                }
-            });
+            let that = this;
             let coordParser = proj4(EPSG_23030, EPSG_4326);
             let routeCoordinates = [];
             _.map(newPPts.stops, stop => {
@@ -39,12 +51,17 @@ class StopsMap extends Component {
                 let singleCoord = {lat: corr[1], lng: corr[0]};
                 routeCoordinates.push(singleCoord);
 
-                new google.maps.Marker({
+                let marker = new google.maps.Marker({
                     position: singleCoord,
-                    map: map,
+                    map: this.map,
+                    scrollwheel: true,
                     title: stop['ayto:NombreParada'],
                     clickable: true
                 });
+                marker.addListener('click', function() {
+                    that.infowindow.open(marker.get('map'), marker);
+                });
+                this.infowindow.setContent('asdfds');
             });
             let lineSymbol = {
                 path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
@@ -57,12 +74,12 @@ class StopsMap extends Component {
                 icons: generatePercentages(lineSymbol)
             });
 
-            flightPath.setMap(map);
+            flightPath.setMap(this.map);
         }
     }
 
     render() {
-        return <div style={{width: '400px', height: '400px'}} ref="map"/>;
+        return <div style={{width: '100%', height: '400px'}} ref="map"/>;
     }
 }
 

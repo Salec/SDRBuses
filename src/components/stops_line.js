@@ -41,12 +41,23 @@ class StopsLine extends Component {
             }
         });
         return (
-            <div>
-                <div>
-                    <ul id="up" className="list-group">IDA {goRep}   </ul>
-                    <ul id="down" className="list-group">VUELTA {backRep}   </ul>
+            <div className="container">
+                <div className="row align-items-center">
+                    <div className="col">
+                        <ul id="up" className="list-group">IDA {goRep}   </ul>
+                    </div>
+                    <div className="col">
+                        <ul id="down" className="list-group">VUELTA {backRep}   </ul>
+                    </div>
                 </div>
-                <StopsMap stops={goInfo}/>
+                <div className="row">
+                    <div className="col">
+                        <StopsMap stops={goInfo}/>
+                    </div>
+                    <div className="col">
+                        <StopsMap stops={backInfo}/>
+                    </div>
+                </div>
             </div>
 
 
