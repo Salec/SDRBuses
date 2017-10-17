@@ -17,7 +17,7 @@ class BusLines extends Component {
                     data-url={"stops/" + bus['dc:identifier']}>
 
                     <td>{bus['dc:name']}</td>
-                    <td> {bus['dc:identifier']}</td>
+                    <td>{bus['ayto:numero']}</td>
 
                 </tr>)
         })

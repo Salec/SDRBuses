@@ -30,12 +30,14 @@ class StopsLine extends Component {
         let goInfo =[];
         let goRep = [];
         let backRep = [];
+        let backInfo = [];
         _.map(this.props.stops.resources, stop => {
             if (CONST_DIR_UP == stop['ayto:SentidoRuta']) {
                 goRep.push(this.getStopInfo(stop));
                 goInfo.push(stop);
             } else {
-                backRep.push(this.getStopInfo(stop))
+                backRep.push(this.getStopInfo(stop));
+                backInfo.push(stop);
             }
         });
         return (
@@ -52,7 +54,8 @@ class StopsLine extends Component {
     }
 
     getStopInfo(stop) {
-        return (  <li key={stop['dc:identifier']}>
+        return (
+        <li key={stop['dc:identifier']}>
             <span>{stop['ayto:NombreParada']}</span>
             <strong> {stop['ayto:NParada']}</strong>
         </li>)
