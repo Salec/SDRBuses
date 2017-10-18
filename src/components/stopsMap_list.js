@@ -4,6 +4,9 @@
 import React, {Component} from 'react';
 import proj4 from 'proj4';
 import _ from  'underscore';
+import {fetchTimes} from '../actions/index';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 const EPSG_4326 = 'EPSG:4326';
 const EPSG_23030 = 'EPSG:23030';
@@ -25,7 +28,8 @@ class StopsMap extends Component {
 
     constructor(props){
         super(props);
-        this.state ={NParada : null}
+        this.state ={NStop : null};
+        this.timesToHtml = this.timesToHtml.bind(this);
     }
     shouldComponentUpdate(){
         return false;
@@ -61,7 +65,11 @@ class StopsMap extends Component {
                 });
                 marker.addListener('click', function(e) {
                     that.infowindow.open(marker.get('map'), marker);
-                    that.setState({NParada: this.stop});
+                    //that.setState({NParada: this.stop});
+                    let t = that.props.fetchTimes(this.stop).then(that.timesToHtml);
+
+                    that.setState({NStop : this.stop });
+                    //TODO create another action to represent current stop
                 });
 
             });
@@ -79,14 +87,32 @@ class StopsMap extends Component {
             flightPath.setMap(this.map);
         }
     }
+    timesToHtml(response){
+        let content = '<div>Parada: '+this.state.NStop+'</div>';
+        console.log('sinFiltrar',response.payload.data.resources);
+        let filterArray = _.filter(
+            response.payload.data.resources,
+            (it) => {return it['ayto:tiempo1'] != 0
+            }
+        );
+        console.log("filtrado",filterArray);
+        _.map(filterArray,info =>{
+            content += `<div>Linea: ${info['ayto:etiqLinea']} tiempo:  ${Math.round(info['ayto:tiempo1']/60)}</div>`;
+        });
 
+        this.infowindow.setContent(content);
+    }
     render() {
         return <div style={{width: '100%', height: '400px'}} ref="map"/>;
     }
 }
+function mapsStateToProps(state) {
+    return {time: state.lines.time}
+}
 
-export default StopsMap;
-
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({fetchTimes : fetchTimes}, dispatch)
+}
 function generatePercentages(lineSymbol) {
     let icons = [];
     let landa = 100/N_INTERVALS;
@@ -98,3 +124,6 @@ function generatePercentages(lineSymbol) {
     }
     return icons;
 }
+export default connect(mapsStateToProps, mapDispatchToProps)(StopsMap);
+
+
