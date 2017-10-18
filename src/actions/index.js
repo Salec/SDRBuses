@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const LIST_BUSES = 'LIST_BUSES';
 export const GET_STOPS_LINE = 'GET_STOPS_LINE';
+export const GET_TIME_STOP = 'GET_TIME_STOP';
 
 const URL_API = 'http://datos.santander.es/api';
 const URL_LIST_BUSES = '/rest/datasets/lineas_bus.json';
@@ -28,7 +29,7 @@ export function fetchStopsLine(identifier) {
 export function fetchTimes(idStop) {
     const request = axios.get(`${URL_API}${URL_STOP_TIME}?query=ayto\\:paradaId:${idStop}`);
     return {
-        type: GET_STOPS_LINE,
+        type: GET_TIME_STOP,
         payload: request
     }
 }//url : http://datos.santander.es/api/rest/datasets/control_flotas_estimaciones.json
