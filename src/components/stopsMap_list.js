@@ -11,6 +11,8 @@ import {connect} from 'react-redux';
 const EPSG_4326 = 'EPSG:4326';
 const EPSG_23030 = 'EPSG:23030';
 const N_INTERVALS = 18;
+//90 min max time to show
+const MAX_TIME_TO_CONSIDER = 5400;
 
 proj4.defs([
     [
@@ -66,9 +68,9 @@ class StopsMap extends Component {
                 marker.addListener('click', function(e) {
                     that.infowindow.open(marker.get('map'), marker);
                     //that.setState({NParada: this.stop});
-                    let t = that.props.fetchTimes(this.stop).then(that.timesToHtml);
+                    that.props.fetchTimes(this.stop).then(that.timesToHtml);
 
-                    that.setState({NStop : this.stop });
+                    that.setState({NStop : this.stop, nameStop: this.title});
                     //TODO create another action to represent current stop
                 });
 
@@ -88,20 +90,25 @@ class StopsMap extends Component {
         }
     }
     timesToHtml(response){
-        let content = '<div>Parada: '+this.state.NStop+'</div>';
-        console.log('sinFiltrar',response.payload.data.resources);
+        let content = `<div class="col">Parada${this.state.NStop}: <span class="badge badge-pill badge-info">${this.state.nameStop}</span></div><table id="infoTable"><tbody>`;
         let filterArray = _.filter(
             response.payload.data.resources,
-            (it) => {return it['ayto:tiempo1'] != 0
+            (it) => {return (it['ayto:tiempo1'] != 0 && it['ayto:tiempo1'] <MAX_TIME_TO_CONSIDER)
             }
         );
-        console.log("filtrado",filterArray);
-        _.map(filterArray,info =>{
-            content += `<div>Linea: ${info['ayto:etiqLinea']} tiempo:  ${Math.round(info['ayto:tiempo1']/60)}</div>`;
+        let order = _.sortBy(filterArray, info =>{
+            return parseInt(info['ayto:tiempo1']);
         });
-
+        console.log('ordenado', order);
+        _.map(order, info => {
+            content += "<tr><td>"+"Linea " + info['ayto:etiqLinea'] +":</td><td>ETA: <b>" +
+                Math.round(info['ayto:tiempo1'] / 60) + "</b> min</td></tr>";
+        });
+        content +=' <tbody></table>';
         this.infowindow.setContent(content);
     }
+
+
     render() {
         return <div style={{width: '100%', height: '400px'}} ref="map"/>;
     }

@@ -12,3 +12,11 @@
     width: 50%;
     float: right
 }
+#infoTable{
+    margin-top: 3px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.badge-info{
+    font-size: 12px !important;
+}
