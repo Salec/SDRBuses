@@ -13,10 +13,15 @@
     float: right
 }
 #infoTable{
-    margin-top: 3px;
-    margin-left: 10%;
-    margin-right: 10%;
+   margin: auto;
 }
 .badge-info{
     font-size: 12px !important;
+}
+
+.table .numP{
+    text-align: center;
+}
+.infoStop {
+    margin-bottom: 6px;
 }

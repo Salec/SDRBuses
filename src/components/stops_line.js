@@ -40,36 +40,53 @@ class StopsLine extends Component {
                 backInfo.push(stop);
             }
         });
-        return (
-            <div className="container">
-                <div className="row align-items-center">
-                    <div className="col">
-                        <ul id="up" className="list-group">IDA {goRep}   </ul>
-                    </div>
-                    <div className="col">
-                        <ul id="down" className="list-group">VUELTA {backRep}   </ul>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <StopsMap stops={goInfo}/>
-                    </div>
-                    <div className="col">
-                        <StopsMap stops={backInfo}/>
-                    </div>
-                </div>
-            </div>
+        console.log("len:",backInfo.length,this);
+        if (1 === 0) {
+        //     return (
+        //         <div className="container">
+        //             <div className="row align-items-center">
+        //                 <div className="col">
+        //                     <ul id="up" className="list-group">CIRCULAR {goRep}   </ul>
+        //                 </div>
+        //                 <div className="row">
+        //                     <div className="col">
+        //                         <StopsMap stops={goInfo}/>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     );
+        } else {
+            return (
+                <table className="table table-striped table-hover table-responsive-sm">
+                    <thead>
+                    <tr >
+                        <th className="numP">Numero Parada</th>
+                        <th >Nombre Parada</th>
 
-
-        )
+                    </tr>
+                    </thead>
+                    <tbody>
+                            {goRep}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <StopsMap span="2" stops={goInfo}/>
+                        </tr>
+                    </tfoot>
+                </table>);
+        }
     }
 
     getStopInfo(stop) {
+        //
+        //<StopsMap stops={backInfo}/>
         return (
-        <li key={stop['dc:identifier']}>
-            <span>{stop['ayto:NombreParada']}</span>
-            <strong> {stop['ayto:NParada']}</strong>
-        </li>)
+            <tr key={stop['dc:identifier']}>
+                <th className="numP">{stop['ayto:NParada']}</th>
+                <td>{stop['ayto:NombreParada']}</td>
+            </tr>
+        )
     }
 
     componentWillMount() {
