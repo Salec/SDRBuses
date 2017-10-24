@@ -20,7 +20,7 @@ class StopsLine extends Component {
         }
         return (
             <div>
-                <h3 className="text-center text-primary">Stops from line {this.props.match.params.id}</h3>
+                <h3 className="text-center text-primary">Paradas línea {this.props.match.params.id}</h3>
                 {this.renderStops()}
             </div>
         );
@@ -48,7 +48,6 @@ class StopsLine extends Component {
                     <tr >
                         <th className="numP">Numero Parada</th>
                         <th >Nombre Parada</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -72,13 +71,18 @@ class StopsLine extends Component {
                         <div className="col">
                             <table className="table table-striped table-hover ">
                                 <thead>
+                                <tr>
+                                    <td colSpan="2">
+                                        <h4 className="tableTitle">IDA</h4>
+                                    </td>
+                                </tr>
                                 <tr >
                                     <th className="numP">Numero Parada</th>
                                     <th >Nombre Parada</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {goRep}
+                                    {goRep}
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -92,14 +96,19 @@ class StopsLine extends Component {
                         <div className="col">
                             <table className="table table-striped table-hover table-responsive-sm">
                                 <thead>
+                                <tr>
+                                    <td colSpan="2">
+                                        <h4 className="tableTitle">VUELTA</h4>
+                                    </td>
+                                </tr>
                                 <tr >
-                                    <th className="numP">Numero Parada</th>
+                                    <th className="numP">Número Parada</th>
                                     <th >Nombre Parada</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {backRep}
+                                    {backRep}
                                 </tbody>
                                 <tfoot>
                                 <tr>

@@ -22,6 +22,9 @@
 .table .numP{
     text-align: center;
 }
+.table .tableTitle{
+    text-align: center;
+}
 .infoStop {
     margin-bottom: 6px;
     text-align: center;
