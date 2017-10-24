@@ -27,7 +27,7 @@ class StopsLine extends Component {
     };
 
     renderStops() {
-        let goInfo =[];
+        let goInfo = [];
         let goRep = [];
         let backRep = [];
         let backInfo = [];
@@ -40,25 +40,35 @@ class StopsLine extends Component {
                 backInfo.push(stop);
             }
         });
-        console.log("len:",backInfo.length,this);
-        if (1 === 0) {
-        //     return (
-        //         <div className="container">
-        //             <div className="row align-items-center">
-        //                 <div className="col">
-        //                     <ul id="up" className="list-group">CIRCULAR {goRep}   </ul>
-        //                 </div>
-        //                 <div className="row">
-        //                     <div className="col">
-        //                         <StopsMap stops={goInfo}/>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     );
-        } else {
+        console.log("len:", backInfo.length, this);
+        if (backInfo.length === 0) {
+            console.log("circular");
             return (
                 <table className="table table-striped table-hover table-responsive-sm">
+                <thead>
+                <tr >
+                    <th className="numP">Numero Parada</th>
+                    <th >Nombre Parada</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                    {goRep}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colSpan="2">
+                    <StopsMap stops={goInfo}/>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>);
+
+        } else {
+            console.log("ida vuelta");
+            return (
+                <div>
+                <table  className="table table-striped table-hover table-responsive-sm">
                     <thead>
                     <tr >
                         <th className="numP">Numero Parada</th>
@@ -67,14 +77,19 @@ class StopsLine extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                            {goRep}
+                    {goRep}
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <StopsMap span="2" stops={goInfo}/>
-                        </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <StopsMap  stops={goInfo}/>
+                        </td>
+                    </tr>
                     </tfoot>
-                </table>);
+                </table>
+
+                </div>
+            );
         }
     }
 

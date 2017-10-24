@@ -47,7 +47,9 @@ class StopsMap extends Component {
         this.infowindow = new google.maps.InfoWindow();
     }
     componentWillReceiveProps(newPPts) {
+        console.log('mapa componentWillReceiveProps');
         if (newPPts.stops && newPPts.stops.length != 0) {
+            console.log("mapa: ",newPPts.stops);
             let that = this;
             let coordParser = proj4(EPSG_23030, EPSG_4326);
             let routeCoordinates = [];
@@ -101,7 +103,7 @@ class StopsMap extends Component {
         });
         console.log('ordenado', order);
         _.map(order, info => {
-            content += "<tr><td>"+"Linea " + info['ayto:etiqLinea'] +":</td><td>ETA: <b>" +
+            content += "<tr><td>"+ info['ayto:etiqLinea']+'-'+info['ayto:destino1'] +":</td><td>ETA: <b>" +
                 Math.round(info['ayto:tiempo1'] / 60) + "</b> min</td></tr>";
         });
         content +=' <tbody></table>';
@@ -110,7 +112,7 @@ class StopsMap extends Component {
 
 
     render() {
-        return <td colSpan={this.props.span} style={{width: '100%', height: '400px'}} ref="map"/>;
+        return <div style={{width: '100%', height: '400px'}} ref="map"/>;
     }
 }
 function mapsStateToProps(state) {
