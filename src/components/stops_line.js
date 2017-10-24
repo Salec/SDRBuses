@@ -69,7 +69,7 @@ class StopsLine extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col">
-                            <table className="table table-striped table-hover ">
+                            <table className="table table-striped table-hover table-responsive-sm ">
                                 <thead>
                                 <tr>
                                     <td colSpan="2">
