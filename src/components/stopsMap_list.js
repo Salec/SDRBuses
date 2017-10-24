@@ -45,50 +45,59 @@ class StopsMap extends Component {
             }
         });
         this.infowindow = new google.maps.InfoWindow();
+
+        if(this.props) {
+            console.log("componentDidMount mapa: ", this.props.stops);
+            this.plotStops(this.props.stops);
+
+        }
+
+    }
+    plotStops(stops){
+        let that = this;
+        let coordParser = proj4(EPSG_23030, EPSG_4326);
+        let routeCoordinates = [];
+        _.map(stops, stop => {
+            let coordinates23030 = [parseInt(stop['ayto:PosX']), parseInt(stop['ayto:PosY'])];
+            let corr = coordParser.forward(coordinates23030);
+            let singleCoord = {lat: corr[1], lng: corr[0]};
+            routeCoordinates.push(singleCoord);
+
+            let marker = new google.maps.Marker({
+                position: singleCoord,
+                map: this.map,
+                scrollwheel: true,
+                title: stop['ayto:NombreParada'],
+                stop: stop["ayto:NParada"],
+                clickable: true
+            });
+            marker.addListener('click', function (e) {
+                that.infowindow.open(marker.get('map'), marker);
+                //that.setState({NParada: this.stop});
+                that.props.fetchTimes(this.stop).then(that.timesToHtml);
+
+                that.setState({NStop: this.stop, nameStop: this.title});
+                //TODO create another action to represent current stop
+            });
+
+        });
+        let lineSymbol = {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+        };
+        let flightPath = new google.maps.Polyline({
+            path: routeCoordinates,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+            icons: generatePercentages(lineSymbol)
+        });
+
+        flightPath.setMap(this.map);
     }
     componentWillReceiveProps(newPPts) {
         console.log('mapa componentWillReceiveProps');
         if (newPPts.stops && newPPts.stops.length != 0) {
-            console.log("mapa: ",newPPts.stops);
-            let that = this;
-            let coordParser = proj4(EPSG_23030, EPSG_4326);
-            let routeCoordinates = [];
-            _.map(newPPts.stops, stop => {
-                let coordinates23030 = [parseInt(stop['ayto:PosX']), parseInt(stop['ayto:PosY'])];
-                let corr = coordParser.forward(coordinates23030);
-                let singleCoord = {lat: corr[1], lng: corr[0]};
-                routeCoordinates.push(singleCoord);
-
-                let marker = new google.maps.Marker({
-                    position: singleCoord,
-                    map: this.map,
-                    scrollwheel: true,
-                    title: stop['ayto:NombreParada'],
-                    stop: stop["ayto:NParada"],
-                    clickable: true
-                });
-                marker.addListener('click', function(e) {
-                    that.infowindow.open(marker.get('map'), marker);
-                    //that.setState({NParada: this.stop});
-                    that.props.fetchTimes(this.stop).then(that.timesToHtml);
-
-                    that.setState({NStop : this.stop, nameStop: this.title});
-                    //TODO create another action to represent current stop
-                });
-
-            });
-            let lineSymbol = {
-                path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-            };
-            let flightPath = new google.maps.Polyline({
-                path: routeCoordinates,
-                strokeColor: '#FF0000',
-                strokeOpacity: 1.0,
-                strokeWeight: 2,
-                icons: generatePercentages(lineSymbol)
-            });
-
-            flightPath.setMap(this.map);
+            this.plotStops(newPPts.stops);
         }
     }
     timesToHtml(response){
@@ -112,6 +121,7 @@ class StopsMap extends Component {
 
 
     render() {
+        console.log('render mapa');
         return <div style={{width: '100%', height: '400px'}} ref="map"/>;
     }
 }

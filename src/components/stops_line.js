@@ -40,35 +40,10 @@ class StopsLine extends Component {
                 backInfo.push(stop);
             }
         });
-        console.log("len:", backInfo.length, this);
         if (backInfo.length === 0) {
             console.log("circular");
             return (
-                <table className="table table-striped table-hover table-responsive-sm">
-                <thead>
-                <tr >
-                    <th className="numP">Numero Parada</th>
-                    <th >Nombre Parada</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                    {goRep}
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td colSpan="2">
-                    <StopsMap stops={goInfo}/>
-                    </td>
-                </tr>
-                </tfoot>
-            </table>);
-
-        } else {
-            console.log("ida vuelta");
-            return (
-                <div>
-                <table  className="table table-striped table-hover table-responsive-sm">
+                <table className="table table-striped table-hover ">
                     <thead>
                     <tr >
                         <th className="numP">Numero Parada</th>
@@ -82,12 +57,60 @@ class StopsLine extends Component {
                     <tfoot>
                     <tr>
                         <td colSpan="2">
-                            <StopsMap  stops={goInfo}/>
+                            <StopsMap stops={goInfo}/>
                         </td>
                     </tr>
                     </tfoot>
                 </table>
+            );
 
+        } else {
+            console.log("ida vuelta");
+            return (
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <table className="table table-striped table-hover ">
+                                <thead>
+                                <tr >
+                                    <th className="numP">Numero Parada</th>
+                                    <th >Nombre Parada</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {goRep}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colSpan="2">
+                                        <StopsMap stops={goInfo}/>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div className="col">
+                            <table className="table table-striped table-hover table-responsive-sm">
+                                <thead>
+                                <tr >
+                                    <th className="numP">Numero Parada</th>
+                                    <th >Nombre Parada</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {backRep}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colSpan="2">
+                                        <StopsMap stops={backInfo}/>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             );
         }
