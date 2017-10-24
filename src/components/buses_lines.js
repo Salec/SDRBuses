@@ -14,7 +14,7 @@ class BusLines extends Component {
         return _.map(this.props.lines, bus => {
             return (
                 <tr key={bus['dc:identifier']} onClick={this.goto.bind(this)}
-                    data-url={"stops/" + bus['dc:identifier']}>
+                    data-url={"line/" + bus['dc:identifier']}>
 
                     <td>{bus['dc:name']}</td>
                     <td>{bus['ayto:numero']}</td>

@@ -5,6 +5,8 @@ import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import buses_lines from './buses_lines'
 import stops_line from './stops_line';
+import nav from './navegation';
+import show_time from './showTime';
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -13,9 +15,11 @@ import stops_line from './stops_line';
 // when the pathname is exactly the string "/"
 const Main = () => (
     <main>
+        <nav/>
         <Switch>
             <Route exact path='/' component={buses_lines}/>
-            <Route path='/stops/:id' component={stops_line}/>
+            <Route path='/line/:id' component={stops_line}/>
+            <Route path='/stop/:id' component={show_time}/>
         </Switch>
     </main>
 );

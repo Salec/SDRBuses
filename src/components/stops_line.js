@@ -126,10 +126,10 @@ class StopsLine extends Component {
     }
 
     getStopInfo(stop) {
-        //
         //<StopsMap stops={backInfo}/>
         return (
-            <tr key={stop['dc:identifier']}>
+
+            <tr data-url={"stop/" + stop['ayto:NParada']} key={stop['dc:identifier']} >
                 <th className="numP">{stop['ayto:NParada']}</th>
                 <td>{stop['ayto:NombreParada']}</td>
             </tr>
