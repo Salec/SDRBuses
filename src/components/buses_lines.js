@@ -11,7 +11,7 @@ class BusLines extends Component {
 
     renderLines() {
 
-        return _.map(this.props.lines.resources, bus => {
+        return _.map(this.props.lines, bus => {
             return (
                 <tr key={bus['dc:identifier']} onClick={this.goto.bind(this)}
                     data-url={"stops/" + bus['dc:identifier']}>
@@ -58,7 +58,10 @@ class BusLines extends Component {
 }
 
 function mapStateToProps(state) {
-    return {lines: state.lines.busLines};
+    let order = _.sortBy(state.lines.busLines.resources, info =>{
+        return parseInt(info['dc:identifier']);
+    });
+    return {lines: order};
 
 }
 
