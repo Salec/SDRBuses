@@ -5,7 +5,7 @@ import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import buses_lines from './buses_lines'
 import stops_line from './stops_line';
-import nav from './navegation';
+import Nav from './navegation';
 import show_time from './showTime';
 
 // The Main component renders one of the three provided
@@ -15,7 +15,7 @@ import show_time from './showTime';
 // when the pathname is exactly the string "/"
 const Main = () => (
     <main>
-        <nav/>
+        <Nav/>
         <Switch>
             <Route exact path='/' component={buses_lines}/>
             <Route path='/line/:id' component={stops_line}/>
