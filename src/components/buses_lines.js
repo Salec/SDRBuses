@@ -5,7 +5,7 @@ import _ from 'underscore';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fecthListBuses} from '../actions/index';
-
+import Modal from './modal';
 
 class BusLines extends Component {
 
@@ -35,6 +35,7 @@ class BusLines extends Component {
         return (<div>
 
                 <h3 className="text-center text-primary">Couch Lines Index</h3>
+                <Modal/>
                 <table className="table table-striped">
                     <thead>
                     <tr>
