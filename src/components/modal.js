@@ -3,11 +3,16 @@
  */
 import React, {Component} from 'react';
 export const MODAL_ID = 'myModal';
-import {fetchStopsLine} from '../actions/index';
+import {fetchTimes} from '../actions/index';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 class Modal extends Component {
     render() {
-        console.log(this);
+        console.log("render modal");
+        if(this.props.stop != false){
+            this.props.fetchTimes(this.props.stop);
+        }
         return (
 
             <div className="modal" tabIndex="-1" role="dialog" id={MODAL_ID}>
@@ -34,5 +39,16 @@ class Modal extends Component {
 
         );
     }
+    componentWillReceiveProps(newPPts) {
+        console.log('modal component will viejas:', this.props,'nuevas',newPPts);
+    }
+
+
 }
-export default Modal;
+function mapsStateToProps(state) {
+    return {time: state.lines.time}
+}
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({fetchTimes : fetchTimes}, dispatch)
+}
+export default connect(mapsStateToProps, mapDispatchToProps)(Modal);

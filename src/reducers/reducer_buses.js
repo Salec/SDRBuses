@@ -12,7 +12,6 @@ export default function (state = INITIAL_STATE, action) {
         case  GET_STOPS_LINE:
             return {...state, stops: action.payload.data};
         case  GET_TIME_STOP:
-            console.log("reducer",action.payload);
             return {...state, time: action.payload.data};
             //TODO new action to represent current stop
         default:

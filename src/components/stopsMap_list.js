@@ -100,10 +100,11 @@ class StopsMap extends Component {
             this.plotStops(newPPts.stops);
         }
     }
-    timesToHtml(response){
+    timesToHtml(){
         let content = `<div class="infoStop">Parada <b>${this.state.NStop}</b>: <span class="badge badge-pill badge-info">${this.state.nameStop}</span></div><table id="infoTable"><tbody>`;
         let filterArray = _.filter(
-            response.payload.data.resources,
+
+            this.props.time.resources,
             (it) => {return (it['ayto:tiempo1'] != 0 && it['ayto:tiempo1'] <MAX_TIME_TO_CONSIDER)
             }
         );
