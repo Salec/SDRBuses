@@ -2,12 +2,12 @@
  * Created by Fernando on 6/11/2017.
  */
 import React, {Component} from 'react';
-
+export const MODAL_ID = 'myModal';
 class Modal extends Component {
     render() {
         return (
 
-            <div className="modal"  tabIndex="-1" role="dialog" id="myModal">
+            <div className="modal"  tabIndex="-1" role="dialog" id={MODAL_ID}>
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">

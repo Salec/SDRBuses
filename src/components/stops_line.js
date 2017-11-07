@@ -6,6 +6,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {fetchStopsLine} from '../actions/index';
 import StopsMap from './stopsMap_list';
+import Modal,{MODAL_ID} from './modal';
 
 const CONST_DIR_UP = 1;
 
@@ -20,6 +21,7 @@ class StopsLine extends Component {
         }
         return (
             <div>
+                <Modal/>
                 <h3 className="text-center text-primary">Paradas línea {this.props.match.params.id}</h3>
                 {this.renderStops()}
             </div>
@@ -132,6 +134,7 @@ class StopsLine extends Component {
             <tr data-url={"stop/" + stop['ayto:NParada']} key={stop['dc:identifier']}
                 onClick={(e) =>{
                         console.log('click');
+                        $(`#${MODAL_ID}`).modal('show')
                         }}
 
             >
