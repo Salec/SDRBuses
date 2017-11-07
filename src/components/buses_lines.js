@@ -48,14 +48,13 @@ class BusLines extends Component {
 
                 <h3 className="text-center text-primary">Couch Lines Index</h3>
                 <div >
-                    <button onClick={this.toggleModal}>
+                    <button onClick={this.toggleModal}
+                            type="button" className="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         Open the modal
                     </button>
 
-                    <Modal show={this.state.isOpen}
-                           onClose={this.toggleModal}>
-                        Here's some content for the modal
-                    </Modal>
+                    <Modal/>
+
                 </div>
                 <table className="table table-striped">
                     <thead>
