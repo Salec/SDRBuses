@@ -9,6 +9,18 @@ import Modal from './modal';
 
 class BusLines extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = { isOpen: false };
+    }
+
+    toggleModal = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+
     renderLines() {
 
         return _.map(this.props.lines, bus => {
@@ -35,7 +47,16 @@ class BusLines extends Component {
         return (<div>
 
                 <h3 className="text-center text-primary">Couch Lines Index</h3>
-                <Modal/>
+                <div >
+                    <button onClick={this.toggleModal}>
+                        Open the modal
+                    </button>
+
+                    <Modal show={this.state.isOpen}
+                           onClose={this.toggleModal}>
+                        Here's some content for the modal
+                    </Modal>
+                </div>
                 <table className="table table-striped">
                     <thead>
                     <tr>
