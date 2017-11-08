@@ -9,10 +9,8 @@ import {bindActionCreators} from 'redux';
 
 class Modal extends Component {
     render() {
-        console.log("render modal");
-        if(this.props.stop != false){
-            this.props.fetchTimes(this.props.stop);
-        }
+        console.log("Modal render");
+
         return (
 
             <div className="modal" tabIndex="-1" role="dialog" id={MODAL_ID}>
@@ -39,8 +37,11 @@ class Modal extends Component {
 
         );
     }
-    componentWillReceiveProps(newPPts) {
-        console.log('modal component will viejas:', this.props,'nuevas',newPPts);
+    componentDidMount(){
+        console.log('Modal ComponentDidMount');
+        if(this.props.stop != false){
+            this.props.fetchTimes(this.props.stop);
+        }
     }
 
 

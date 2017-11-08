@@ -29,6 +29,7 @@ class StopsMap extends Component {
 
 
     constructor(props){
+        console.log('MAP constructor');
         super(props);
         this.state ={NStop : null};
         this.timesToHtml = this.timesToHtml.bind(this);
@@ -37,6 +38,7 @@ class StopsMap extends Component {
         return false;
     }
     componentDidMount(){
+        console.log('MAP componentDidMount');
         this.map = new google.maps.Map(this.refs.map, {
             zoom: 13,
             center: {
@@ -95,7 +97,7 @@ class StopsMap extends Component {
         flightPath.setMap(this.map);
     }
     componentWillReceiveProps(newPPts) {
-        console.log('mapa componentWillReceiveProps');
+        console.log('MAP componentWillReceiveProps');
         if (newPPts.stops && newPPts.stops.length != 0) {
             this.plotStops(newPPts.stops);
         }
@@ -122,7 +124,7 @@ class StopsMap extends Component {
 
 
     render() {
-        console.log('render mapa');
+        console.log('MAP render');
         return <div style={{width: '100%', height: '400px'}} ref="map"/>;
     }
 }

@@ -2,7 +2,7 @@
  * Created by Fernando on 4/10/2017.
  */
 import {LIST_BUSES, GET_STOPS_LINE, GET_TIME_STOP} from '../actions/index';
-const INITIAL_STATE = {busLines: [], stops: [], time:[], nstop: null};
+const INITIAL_STATE = {busLines: [], stops: [], time:[]};
 
 
 export default function (state = INITIAL_STATE, action) {
