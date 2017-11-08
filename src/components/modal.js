@@ -6,6 +6,7 @@ export const MODAL_ID = 'myModal';
 import {fetchTimes} from '../actions/index';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {timesTable} from '../auxFunctions/common';
 
 class Modal extends Component {
     render() {
@@ -24,7 +25,9 @@ class Modal extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <p>Modal body text goes here.</p>
+                            <div dangerouslySetInnerHTML={
+                                {__html: timesTable(this.props.time.resources, this.props.stop, this.props.name,false)}
+                            }/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal"
@@ -37,19 +40,36 @@ class Modal extends Component {
 
         );
     }
-    componentDidMount(){
-        console.log('Modal ComponentDidMount');
-        if(this.props.stop != false){
-            this.props.fetchTimes(this.props.stop);
+
+    componentWillReceiveProps(newPPts) {
+        if(this.props.stop != newPPts.stop){
+            this.props.fetchTimes(newPPts.stop);
+        }
+    }
+    //     componentDidMount() {
+    //     console.log('Modal ComponentDidMount');
+    //     if (this.props.stop != false) {
+    //         this.props.fetchTimes(this.props.stop);
+    //     }
+    // }
+
+    timesToHtml() {
+        console.log("llamada a timesToHtml", this);
+        if (this.props.time.resources) {
+            return
         }
     }
 
+    constructor() {
+        super();
+        this.timesToHtml = this.timesToHtml.bind(this);
+    }
 
 }
 function mapsStateToProps(state) {
     return {time: state.lines.time}
 }
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchTimes : fetchTimes}, dispatch)
+    return bindActionCreators({fetchTimes: fetchTimes}, dispatch)
 }
 export default connect(mapsStateToProps, mapDispatchToProps)(Modal);

@@ -7,12 +7,13 @@ import _ from  'underscore';
 import {fetchTimes} from '../actions/index';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {timesTable} from '../auxFunctions/common';
 
 const EPSG_4326 = 'EPSG:4326';
 const EPSG_23030 = 'EPSG:23030';
 const N_INTERVALS = 18;
-//90 min max time to show
-const MAX_TIME_TO_CONSIDER = 5400;
+
+
 
 proj4.defs([
     [
@@ -103,23 +104,7 @@ class StopsMap extends Component {
         }
     }
     timesToHtml(){
-        let content = `<div class="infoStop">Parada <b>${this.state.NStop}</b>: <span class="badge badge-pill badge-info">${this.state.nameStop}</span></div><table id="infoTable"><tbody>`;
-        let filterArray = _.filter(
-
-            this.props.time.resources,
-            (it) => {return (it['ayto:tiempo1'] != 0 && it['ayto:tiempo1'] <MAX_TIME_TO_CONSIDER)
-            }
-        );
-        let order = _.sortBy(filterArray, info =>{
-            return parseInt(info['ayto:tiempo1']);
-        });
-        console.log('ordenado', order);
-        _.map(order, info => {
-            content += "<tr><td>"+ info['ayto:etiqLinea']+'-'+info['ayto:destino1'] +":</td><td>ETA: <b>" +
-                Math.round(info['ayto:tiempo1'] / 60) + "</b> min</td></tr>";
-        });
-        content +=' <tbody></table>';
-        this.infowindow.setContent(content);
+         this.infowindow.setContent(timesTable(this.props.time.resources,this.state.NStop,this.state.nameStop));
     }
 
 
