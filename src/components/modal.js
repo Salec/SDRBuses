@@ -46,24 +46,6 @@ class Modal extends Component {
             this.props.fetchTimes(newPPts.stop);
         }
     }
-    //     componentDidMount() {
-    //     console.log('Modal ComponentDidMount');
-    //     if (this.props.stop != false) {
-    //         this.props.fetchTimes(this.props.stop);
-    //     }
-    // }
-
-    timesToHtml() {
-        console.log("llamada a timesToHtml", this);
-        if (this.props.time.resources) {
-            return
-        }
-    }
-
-    constructor() {
-        super();
-        this.timesToHtml = this.timesToHtml.bind(this);
-    }
 
 }
 function mapsStateToProps(state) {
