@@ -3,6 +3,7 @@ import axios from 'axios';
 export const LIST_BUSES = 'LIST_BUSES';
 export const GET_STOPS_LINE = 'GET_STOPS_LINE';
 export const GET_TIME_STOP = 'GET_TIME_STOP';
+export const CHANGE_STOP = 'CHANGE_STOP';
 
 const URL_API = 'http://datos.santander.es/api';
 const URL_LIST_BUSES = '/rest/datasets/lineas_bus.json';
@@ -32,4 +33,10 @@ export function fetchTimes(idStop) {
         type: GET_TIME_STOP,
         payload: request
     }
-}//url : http://datos.santander.es/api/rest/datasets/control_flotas_estimaciones.json
+}
+export function changeStop(stop){
+    return {
+        type: CHANGE_STOP,
+        payload: stop
+    }
+}
