@@ -4,9 +4,9 @@
 import _ from  'underscore';
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {fetchStopsLine} from '../actions/index';
+import {fetchStopsLine, changeStop} from '../actions/index';
 import StopsMap from './stopsMap_list';
-import Modal, {MODAL_ID} from './modal';
+
 
 const CONST_DIR_UP = 1;
 
@@ -18,7 +18,7 @@ class StopsLine extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {stop: false, name: ''};
+        
     }
 
     render() {
@@ -27,7 +27,6 @@ class StopsLine extends Component {
         }
         return (
             <div>
-                <Modal stop={this.state.stop} name={this.state.name}/>
                 <h3 className="text-center text-primary">Paradas línea {this.props.match.params.id}</h3>
                 {this.renderStops()}
             </div>
@@ -139,11 +138,13 @@ class StopsLine extends Component {
 
             <tr data-url={stop['ayto:NParada']} data-name={stop['ayto:NombreParada']} key={stop['dc:identifier']}
                 onClick={(e) => {
-                    this.setState({
+                    console.log('click',this);
+                    this.props.changeStop({
                         stop: e.target.parentElement.dataset.url,
                         name: e.target.parentElement.dataset.name
                     });
-                    $(`#${MODAL_ID}`).modal('show');
+                    
+                    
                 }}
 
             >
@@ -163,4 +164,4 @@ function mapStateToProps(state) {
     return {stops: state.lines.stops}
 
 }
-export default connect(mapStateToProps, {fetchStopsLine})(StopsLine);
+export default connect(mapStateToProps, {changeStop, fetchStopsLine})(StopsLine);

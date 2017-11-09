@@ -35,6 +35,7 @@ export function fetchTimes(idStop) {
     }
 }
 export function changeStop(stop){
+    console.log('accion changeStop',stop);
     return {
         type: CHANGE_STOP,
         payload: stop

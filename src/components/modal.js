@@ -18,7 +18,7 @@ class Modal extends Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Tiempo Parada {this.props.stop} - <b>{this.props.name}</b></h5>
+                            <h5 className="modal-title">Tiempo Parada {this.state.stop} - <b>{this.props.state}</b></h5>
                             <button type="button" className="close" data-dismiss="modal"
                                     aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -26,7 +26,7 @@ class Modal extends Component {
                         </div>
                         <div className="modal-body">
                             <div dangerouslySetInnerHTML={
-                                {__html: timesTable(this.props.time.resources, this.props.stop, this.props.name,false)}
+                                {__html: timesTable(this.props.time.resources, this.state.stop, this.state.name,false)}
                             }/>
                         </div>
                         <div className="modal-footer">
@@ -46,10 +46,18 @@ class Modal extends Component {
             this.props.fetchTimes(newPPts.stop);
         }
     }
+    constructor(props){
+        super();
+        this.state = {stop: null,
+            name: ''}
+    }
 
 }
 function mapsStateToProps(state) {
-    return {time: state.lines.time}
+    return {time: state.lines.time,
+            stop: state.lines.stop,
+            name: state.lines.name
+        }
 }
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({fetchTimes: fetchTimes}, dispatch)

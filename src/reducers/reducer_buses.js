@@ -15,6 +15,7 @@ export default function (state = INITIAL_STATE, action) {
             return {...state, time: action.payload.data};
             //TODO new action to represent current stop
         case NEW_STOP:
+            console.log("stado actualizado por getStopInfo");
             return {...state, stop: action.payload.stop, name: action.payload.name}
         default:
             return state;
