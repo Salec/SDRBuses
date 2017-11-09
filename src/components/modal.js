@@ -6,11 +6,12 @@ export const MODAL_ID = 'myModal';
 import {fetchTimes} from '../actions/index';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {timesTable} from '../auxFunctions/common';
+import {orderTimes} from '../auxFunctions/common';
+import _ from 'underscore';
 
 class Modal extends Component {
     render() {
-        console.log("Modal render");
+        console.log("Modal render",this);
 
         return (
 
@@ -18,16 +19,16 @@ class Modal extends Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Tiempo Parada {this.state.stop} - <b>{this.props.state}</b></h5>
+                            <h5 className="modal-title">Tiempo Parada {this.props.stop} - <b>{this.props.name}</b></h5>
                             <button type="button" className="close" data-dismiss="modal"
                                     aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div className="modal-body">
-                            <div dangerouslySetInnerHTML={
-                                {__html: timesTable(this.props.time.resources, this.state.stop, this.state.name,false)}
-                            }/>
+                            <table id="infoTable">
+
+                            <tbody>{this.printTimes()}</tbody></table>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal"
@@ -40,19 +41,28 @@ class Modal extends Component {
 
         );
     }
+    
+    printTimes(){
+        return _.map(orderTimes(this.props.time), time => {
+            return (
+            <tr>
+                <td> {time['ayto:etiqLinea']}</td>
+                <td> {time['ayto:destino1']} </td>
+                <td>ETA: <b> {Math.round(info['ayto:tiempo1'] / 60)} </b> min</td>
+            </tr>
+            )
+        })
+    }
 
     componentWillReceiveProps(newPPts) {
+        console.log('newProps', newPPts);
         if(this.props.stop != newPPts.stop){
             this.props.fetchTimes(newPPts.stop);
+            $(`#${MODAL_ID}`).modal('show');
         }
     }
-    constructor(props){
-        super();
-        this.state = {stop: null,
-            name: ''}
-    }
-
-}
+   
+   }
 function mapsStateToProps(state) {
     return {time: state.lines.time,
             stop: state.lines.stop,

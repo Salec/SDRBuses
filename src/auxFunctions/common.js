@@ -21,6 +21,18 @@ export function timesTable(times,Nstop,nameStop, title = true) {
         content += "<tr><td>"+ info['ayto:etiqLinea']+'</td><td>'+info['ayto:destino1'] +"</td><td>ETA: <b>" +
             Math.round(info['ayto:tiempo1'] / 60) + "</b> min</td></tr>";
     });
-    content +=' <tbody></table>';
+    content +=' </tbody></table>';
     return content;
+}
+export function orderTimes(times){
+    let filterArray = _.filter(
+
+        times,
+        (it) => {return (it['ayto:tiempo1'] != 0 && it['ayto:tiempo1'] < MAX_TIME_TO_CONSIDER)
+        }
+    );
+    let order = _.sortBy(filterArray, info =>{
+        return parseInt(info['ayto:tiempo1']);
+    });
+    return order;
 }
