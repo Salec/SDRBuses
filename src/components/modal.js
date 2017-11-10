@@ -2,16 +2,17 @@
  * Created by Fernando on 6/11/2017.
  */
 import React, {Component} from 'react';
-export const MODAL_ID = 'myModal';
 import {fetchTimes} from '../actions/index';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {orderTimes} from '../auxFunctions/common';
 import _ from 'underscore';
 
+export const MODAL_ID = 'myModal';
+
 class Modal extends Component {
     render() {
-        console.log("Modal render",this);
+        console.log("Modal render", this);
 
         return (
 
@@ -28,7 +29,8 @@ class Modal extends Component {
                         <div className="modal-body">
                             <table id="infoTable">
 
-                            <tbody>{this.printTimes()}</tbody></table>
+                                <tbody>{this.printTimes()}</tbody>
+                            </table>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal"
@@ -41,25 +43,26 @@ class Modal extends Component {
 
         );
     }
-    
-    printTimes(){
-        return _.map(orderTimes(this.props.time), time => {
+
+    printTimes() {
+        return _.map(orderTimes(this.props.time.resources), time => {
             return (
-            <tr>
-                <td> {time['ayto:etiqLinea']}</td>
-                <td> {time['ayto:destino1']} </td>
-                <td>ETA: <b> {Math.round(info['ayto:tiempo1'] / 60)} </b> min</td>
-            </tr>
+                <tr key={time['dc:identifier']}>
+                    <td> {time['ayto:etiqLinea']}</td>
+                    <td> {time['ayto:destino1']} </td>
+                    <td>ETA: <b> {Math.round(time['ayto:tiempo1'] / 60)} </b> min</td>
+                </tr>
             )
         })
     }
 
     componentWillReceiveProps(newPPts) {
         console.log('newProps', newPPts);
-        if(this.props.stop != newPPts.stop){
+        if (this.props.stop != newPPts.stop) {
             this.props.fetchTimes(newPPts.stop);
             $(`#${MODAL_ID}`).modal('show');
         }
+
     }
    
    }
