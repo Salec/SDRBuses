@@ -25,7 +25,6 @@ export function timesTable(times,Nstop,nameStop, title = true) {
     return content;
 }
 export function orderTimes(times){
-    console.log("pre order", times);
     let filterArray = _.filter(
 
         times,
@@ -35,6 +34,5 @@ export function orderTimes(times){
     let order = _.sortBy(filterArray, info =>{
         return parseInt(info['ayto:tiempo1']);
     });
-    console.log("order:",order);
     return order;
 }
