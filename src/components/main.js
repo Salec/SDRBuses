@@ -7,6 +7,7 @@ import buses_lines from './buses_lines'
 import stops_line from './stops_line';
 import Nav from './navegation';
 import Modal from './modal';
+import about from './about';
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -19,6 +20,7 @@ const Main = () => (
         <Switch>
             <Route exact path='/' component={buses_lines}/>
             <Route path='/line/:id' component={stops_line}/>
+            <Route path='/about' component={about}/>
         </Switch>
         <Modal/>
     </main>
