@@ -26,8 +26,8 @@ class Nav extends React.Component {
                                 Más...
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href={SCHEDULE}>Horarios</a>
-                                <a className="dropdown-item" href={MAP}>Plano
+                                <a target="_blank" className="dropdown-item" href={SCHEDULE}>Horarios</a>
+                                <a target="_blank" className="dropdown-item" href={MAP}>Plano
                                     General</a>
                                 <div className="dropdown-divider"></div>
                                 <a className="dropdown-item" href="/about">Acerca de la página</a>
@@ -39,19 +39,6 @@ class Nav extends React.Component {
                                placeholder="Número Parada"/>
                         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Tiempo</button>
                     </form>
-                    <ul className="navbar-nav">
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Idioma
-                            </a>
-                            <div className="dropdown-menu" aria-labelledby="languageDropdown">
-                                <a className="dropdown-item" >ES</a>
-                                <a className="dropdown-item" >UK
-                                    General</a>
-
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </nav>
         );

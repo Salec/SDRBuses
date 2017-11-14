@@ -18,7 +18,7 @@ export function timesTable(times,Nstop,nameStop, title = true) {
         return parseInt(info['ayto:tiempo1']);
     });
     _.map(order, info => {
-        content += "<tr><td>"+ info['ayto:etiqLinea']+'</td><td>'+info['ayto:destino1'] +"</td><td>ETA: <b>" +
+        content += "<tr><td>"+ info['ayto:etiqLinea']+'</td><td>'+info['ayto:destino1'] +"</td><td><b>" +
             Math.round(info['ayto:tiempo1'] / 60) + "</b> min</td></tr>";
     });
     content +=' </tbody></table>';

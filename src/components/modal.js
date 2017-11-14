@@ -50,7 +50,7 @@ class Modal extends Component {
                 <tr key={time['dc:identifier']}>
                     <td> {time['ayto:etiqLinea']}</td>
                     <td> {time['ayto:destino1']} </td>
-                    <td>ETA: <b> {Math.round(time['ayto:tiempo1'] / 60)} </b> min</td>
+                    <td><b> {Math.round(time['ayto:tiempo1'] / 60)} </b> min</td>
                 </tr>
             )
         })

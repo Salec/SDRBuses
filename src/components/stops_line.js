@@ -23,11 +23,11 @@ class StopsLine extends Component {
 
     render() {
         if (!this.props) {
-            return <div>Loading...</div>
+            return <div>Cargando...</div>
         }
         return (
             <div>
-                <h3 className="text-center text-primary">Paradas línea {this.props.match.params.id}</h3>
+                <h3 className="text-center text-primary mt-2">Paradas línea {this.props.match.params.id}</h3>
                 {this.renderStops()}
             </div>
         );
@@ -53,7 +53,7 @@ class StopsLine extends Component {
                 <table className="table table-striped table-hover ">
                     <thead>
                     <tr >
-                        <th className="numP">Numero Parada</th>
+                        <th className="numP">Número Parada</th>
                         <th >Nombre Parada</th>
                     </tr>
                     </thead>
@@ -84,7 +84,7 @@ class StopsLine extends Component {
                                     </td>
                                 </tr>
                                 <tr >
-                                    <th className="numP">Numero Parada</th>
+                                    <th className="numP">Número Parada</th>
                                     <th >Nombre Parada</th>
                                 </tr>
                                 </thead>

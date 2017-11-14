@@ -41,18 +41,18 @@ class BusLines extends Component {
 
     render() {
         if (!this.props.lines) {
-            return <div>Loading...</div>
+            return <div>Cargando...</div>
         }
 
         return (<div>
 
-                <h3 className="text-center text-primary">Couch Lines Index</h3>
+                <h3 className="text-center text-primary mt-2">Índice de líneas</h3>
 
                 <table className="table table-striped">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Line</th>
+                        <th>Nombre</th>
+                        <th>Linea</th>
                     </tr>
                     </thead>
                     <tbody>
