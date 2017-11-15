@@ -6,7 +6,8 @@
   "author": "Fernando Martin Garcia",
   "repository": "git@github.com/Salec/SDRBuses.git",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "build": "webpack -p --config ./webpack.prod.js --define process.env.NODE_ENV='\"production\"' --progress --colors  --display-modules"
   },
   "license": "MIT",
   "devDependencies": {

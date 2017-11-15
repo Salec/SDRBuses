@@ -12,7 +12,6 @@ export const MODAL_ID = 'myModal';
 
 class Modal extends Component {
     render() {
-        console.log("Modal render", this);
 
         return (
 
