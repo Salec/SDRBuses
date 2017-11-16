@@ -9,6 +9,7 @@ import {Route, BrowserRouter} from 'react-router-dom'
 import App from './components/app'
 import reducers from './reducers';
 import promise from 'redux-promise';
+require ('../style/style.css')
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
