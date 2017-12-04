@@ -4,9 +4,9 @@
 import _ from  'underscore';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {fetchStopsLine, changeStop} from '../actions/index';
 import StopsMap from './stopsMap_list';
-import PropTypes from 'prop-types';
 
 const CONST_DIR_UP = 1;
 
