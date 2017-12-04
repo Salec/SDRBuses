@@ -5,10 +5,6 @@ import {changeStop} from '../actions/index';
 const SCHEDULE = "http://www.tusantander.es/sites/tus.int.ayto-santander.es/files/tusinvierno2017_optimizado.pdf";
 const MAP = "http://www.tusantander.es/sites/tus.int.ayto-santander.es/files/planos-red-lineas_1.pdf";
 class Nav extends React.Component {
-    constructor(props){
-        super(props);
-        this.onFormSubmit = this.onFormSubmit.bind(this);
-    }
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light  " >
@@ -43,7 +39,7 @@ class Nav extends React.Component {
             </nav>
         );
     }
-    onFormSubmit(event){
+    onFormSubmit = (event) =>{
         event.preventDefault();
         this.props.changeStop({stop: event.target[0].value});
     }

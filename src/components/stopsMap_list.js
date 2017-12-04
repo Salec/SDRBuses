@@ -33,7 +33,6 @@ class StopsMap extends Component {
         console.log('MAP constructor');
         super(props);
         this.state ={NStop : null};
-        this.timesToHtml = this.timesToHtml.bind(this);
     }
     shouldComponentUpdate(){
         return false;
@@ -103,7 +102,7 @@ class StopsMap extends Component {
             this.plotStops(newPPts.stops);
         }
     }
-    timesToHtml(){
+    timesToHtml = () =>{
          this.infowindow.setContent(timesTable(this.props.time.resources,this.state.NStop,this.state.nameStop));
     }
 

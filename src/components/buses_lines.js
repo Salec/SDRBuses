@@ -25,7 +25,7 @@ class BusLines extends Component {
 
         return _.map(this.props.lines, bus => {
             return (
-                <tr key={bus['dc:identifier']} onClick={this.goto.bind(this)}
+                <tr key={bus['dc:identifier']} onClick={this.goto}
                     data-url={"line/" + bus['dc:identifier']}>
 
                     <td>{bus['dc:name']}</td>
@@ -35,7 +35,7 @@ class BusLines extends Component {
         })
     }
 
-    goto(event) {
+    goto = (event) =>{
         this.props.history.push(event.target.parentElement.dataset.url)
     }
 
