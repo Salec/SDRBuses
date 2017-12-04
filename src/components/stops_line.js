@@ -2,11 +2,11 @@
  * Created by Fernando on 10/10/2017.
  */
 import _ from  'underscore';
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchStopsLine, changeStop} from '../actions/index';
 import StopsMap from './stopsMap_list';
-
+import PropTypes from 'prop-types';
 
 const CONST_DIR_UP = 1;
 
