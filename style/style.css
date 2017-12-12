@@ -1,0 +1,31 @@
+h3 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#up {
+    width: 50%;
+    float: left
+}
+
+#down {
+    width: 50%;
+    float: right
+}
+#infoTable{
+   width: 100%;
+}
+.badge-info{
+    font-size: 12px !important;
+}
+
+.table .numP{
+    text-align: center;
+}
+.table .tableTitle{
+    text-align: center;
+}
+.infoStop {
+    margin-bottom: 6px;
+    text-align: center;
+}
