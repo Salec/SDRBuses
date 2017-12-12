@@ -21,19 +21,19 @@ Run ```npm start``` to download all the dependencies
 - [ ] Show load on fetch times
 - [ ] Update webpack
 - [X] Publish --> Add ccs
-- [ ] navbar-collapse
 - [ ] Write tests
 - [ ] remove console.log in prod (uglifyjs drop_console)
-- [ ] Add contributor page
+- [X] Add contributor page
 - [ ] Add favourite stops
 - [ ] Add point to recharge TUS card
 - [ ] Add prices of the trips
 - [ ] Rework maps to plot different routes  
-- [ ] Locate user using HTML5 functions and
+- [ ] Locate user using HTML5 functions and show nearby stops
 - [ ] Cookies disclaimer 
-- [ ] Github project
+- [X] Github project link
 - [ ] Add public contact 
 - [ ] create another action to represent current stop on the map (move center to stop)
+- [ ] Twitter updates (tags from santanderBus and mentions related...)
 
 #### Contribute
 
