@@ -79,7 +79,7 @@ class StopsMap extends Component {
                 that.props.fetchTimes(this.stop).then(that.timesToHtml);
 
                 that.setState({NStop: this.stop, nameStop: this.title});
-                //TODO create another action to represent current stop
+                //TODO create another action to represent current stop on the map (move center to stop)
             });
 
         });
