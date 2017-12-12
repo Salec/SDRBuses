@@ -34,6 +34,7 @@ Run ```npm start``` to download all the dependencies
 - [ ] Add public contact 
 - [ ] create another action to represent current stop on the map (move center to stop)
 - [ ] Twitter updates (tags from santanderBus and mentions related...)
+
 #### Contribute
 
 You can submit pull request and comments
