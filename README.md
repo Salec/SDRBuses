@@ -1,6 +1,8 @@
 # SDR BUS
 
-React-Redux application to check the path and time to reach destination of the buses of Santander
+React-Redux web application to check the path and time to reach destination of the buses of Santander
+
+See http://www.tusantander.es/red-lineas for more information
 ###Install
 Run ```npm start``` to download all the dependencies 
  
@@ -20,7 +22,8 @@ Run ```npm start``` to download all the dependencies
 - [ ] Add favourite stops
 - [ ] Add point to recharge TUS card
 - [ ] Add prices of the trips
-- [ ] Rework maps to plot diferent routes  
+- [ ] Rework maps to plot different routes  
+- [ ] Locate user using HTML5 functions and
 
 
 #### Contribute
