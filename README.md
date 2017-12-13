@@ -4,15 +4,15 @@ React-Redux web application to check the path and time to reach destination of t
 
 Open API used: http://datos.santander.es
 
-Currently cors is disabled datos.santander.es API, to make it work under chrome install [this extension](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi)
+Currently cors is disabled for datos.santander.es API, to make it work under chrome install [this extension](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi)
 
-See http://www.tusantander.es/red-lineas for more information
+See http://www.tusantander.es/red-lineas for more information of the current Santander coach system.
 
 
 ### Install
-Run ```npm start``` to download all the dependencies 
+Run ```npm install``` to download all the dependencies 
  
-###Run
+### Run
 * In development start server with ```npm start``` Server will be deployed in [http://localhost:8080/](http://localhost:8080/) 
 * To generate production code, run  ```npm run build```
 
