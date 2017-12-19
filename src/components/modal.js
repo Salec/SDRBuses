@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {orderTimes} from '../auxFunctions/common';
 import _ from 'underscore';
+import PropTypes from 'prop-types';
 
 export const MODAL_ID = 'myModal';
 
@@ -19,7 +20,8 @@ class Modal extends Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Tiempo Parada {this.props.stop} - <b>{this.props.name}</b></h5>
+                            <h5 className="modal-title">{this.context.t("Time for stop ")} {this.props.stop} -
+                                <b>{this.props.name}</b></h5>
                             <button type="button" className="close" data-dismiss="modal"
                                     aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -33,7 +35,7 @@ class Modal extends Component {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal"
-                            >Close
+                            >{this.context.t("Close")}
                             </button>
                         </div>
                     </div>
@@ -63,13 +65,17 @@ class Modal extends Component {
         }
 
     }
-   
-   }
+
+}
+Modal.contextTypes = {
+    t: PropTypes.func
+}
 function mapsStateToProps(state) {
-    return {time: state.lines.time,
-            stop: state.lines.stop,
-            name: state.lines.name
-        }
+    return {
+        time: state.lines.time,
+        stop: state.lines.stop,
+        name: state.lines.name
+    }
 }
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({fetchTimes: fetchTimes}, dispatch)

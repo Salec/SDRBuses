@@ -1,18 +1,14 @@
-/**
- * Created by Fernando on 4/10/2017.
- */
 import _ from 'underscore';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {fecthListBuses} from '../actions/index';
-
 
 class BusLines extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = { isOpen: false };
+        this.state = {isOpen: false};
     }
 
     toggleModal = () => {
@@ -35,24 +31,23 @@ class BusLines extends Component {
         })
     }
 
-    goto = (event) =>{
+    goto = (event) => {
         this.props.history.push(event.target.parentElement.dataset.url)
     }
 
     render() {
         if (!this.props.lines) {
-            return <div>Cargando...</div>
+            return <div>{this.context.t("Loading...")}</div>
         }
-
         return (<div>
 
-                <h3 className="text-center text-primary mt-2">Índice de líneas</h3>
+                <h3 className="text-center text-primary mt-2">{this.context.t("Line Index")}</h3>
 
                 <table className="table table-striped">
                     <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Linea</th>
+                        <th>{this.context.t("Name")}</th>
+                        <th>{this.context.t("Line")}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,18 +60,18 @@ class BusLines extends Component {
     };
 
     componentWillMount() {
-
         this.props.fecthListBuses();
     };
 }
-
+BusLines.contextTypes = {
+    t: PropTypes.func
+}
 function mapStateToProps(state) {
-    let order = _.sortBy(state.lines.busLines.resources, info =>{
+    let order = _.sortBy(state.lines.busLines.resources, info => {
         return parseInt(info['dc:identifier']);
     });
     return {lines: order};
 
 }
-
 
 export default connect(mapStateToProps, {fecthListBuses})(BusLines);

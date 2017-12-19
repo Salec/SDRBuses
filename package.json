@@ -7,7 +7,9 @@
   "repository": "git@github.com/Salec/SDRBuses.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "build": "webpack -p --config ./webpack.prod.js --define process.env.NODE_ENV='\"production\"' --progress --colors  --display-modules"
+    "build": "webpack -p --config ./webpack.prod.js --define process.env.NODE_ENV='\"production\"' --progress --colors  --display-modules",
+    "extract": "i18n_extract",
+    "import": "i18n_import --translations=src/translations"
   },
   "license": "MIT",
   "devDependencies": {
@@ -38,6 +40,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-form": "^4.1.3",
+    "redux-i18n": "^1.5.11",
     "redux-promise": "^0.5.3",
     "underscore": "^1.8.3"
   }
