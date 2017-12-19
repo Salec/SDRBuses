@@ -17,7 +17,7 @@ Run ```npm install``` to download all the dependencies
 * To generate production code, run  ```npm run build```
 
 #### TODO LIST
-- [ ] Add multilanguage 
+- [X] Add multilanguage 
 - [ ] Show load on fetch times
 - [ ] Update webpack
 - [X] Publish --> Add ccs

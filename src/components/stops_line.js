@@ -17,13 +17,11 @@ class StopsLine extends Component {
 
     constructor(props) {
         super(props);
-
-        
     }
 
     render() {
         if (!this.props) {
-            return <div>Cargando...</div>
+            return <div>{this.context.t("Loading...")}</div>
         }
         return (
             <div>
@@ -53,8 +51,8 @@ class StopsLine extends Component {
                 <table className="table table-striped table-hover ">
                     <thead>
                     <tr >
-                        <th className="numP">Número Parada</th>
-                        <th >Nombre Parada</th>
+                        <th className="numP">{this.context.t("Stop Number")}</th>
+                        <th >{this.context.t("Stop Name")}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -80,12 +78,12 @@ class StopsLine extends Component {
                                 <thead>
                                 <tr>
                                     <td colSpan="2">
-                                        <h4 className="tableTitle">IDA</h4>
+                                        <h4 className="tableTitle">{this.context.t("IDA")}</h4>
                                     </td>
                                 </tr>
                                 <tr >
-                                    <th className="numP">Número Parada</th>
-                                    <th >Nombre Parada</th>
+                                    <th className="numP">{this.context.t("Stop Number")}</th>
+                                    <th>{this.context.t("Stop Name")}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -105,13 +103,12 @@ class StopsLine extends Component {
                                 <thead>
                                 <tr>
                                     <td colSpan="2">
-                                        <h4 className="tableTitle">VUELTA</h4>
+                                        <h4 className="tableTitle">{this.context.t("VUELTA")}</h4>
                                     </td>
                                 </tr>
                                 <tr >
-                                    <th className="numP">Número Parada</th>
-                                    <th >Nombre Parada</th>
-
+                                    <th className="numP">{this.context.t("Stop Number")}</th>
+                                    <th>{this.context.t("Stop Name")}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -138,16 +135,12 @@ class StopsLine extends Component {
 
             <tr data-url={stop['ayto:NParada']} data-name={stop['ayto:NombreParada']} key={stop['dc:identifier']}
                 onClick={(e) => {
-                    console.log('click',this);
+                    console.log('click', this);
                     this.props.changeStop({
                         stop: e.target.parentElement.dataset.url,
                         name: e.target.parentElement.dataset.name
                     });
-                    
-                    
-                }}
-
-            >
+                }}>
                 <th className="numP">{stop['ayto:NParada']}</th>
                 <td>{stop['ayto:NombreParada']}</td>
             </tr>
@@ -159,6 +152,9 @@ class StopsLine extends Component {
     }
 }
 
+StopsLine.contextTypes = {
+    t: PropTypes.func
+}
 
 function mapStateToProps(state) {
     return {stops: state.lines.stops}
